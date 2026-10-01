@@ -32,7 +32,7 @@ def get_args():
 
 
 # Main
-if None != (args := get_args()):
+if None not in (args := get_args()):
     if enough_battery(*args) == True:
         leftover=args[0]-args[1]*args[2]
         with rp.Progress(rp.TextColumn("[progress.description]{task.description}"), rp.BarColumn(complete_style='bar.finished'), rp.TaskProgressColumn()) as p:
