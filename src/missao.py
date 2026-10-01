@@ -28,11 +28,14 @@ def get_args():
         else:
             print(f'Argumento Desconhecido: "{sys.argv[i]}"')
             return None
-    return list(Settings.values())
+    if None not in (args := list(Settings.values())):
+        return args
+    else:
+        return None
 
 
 # Main
-if None not in (args := get_args()):
+if None != (args := get_args()):
     if enough_battery(*args) == True:
         leftover=args[0]-args[1]*args[2]
         with rp.Progress(rp.TextColumn("[progress.description]{task.description}"), rp.BarColumn(complete_style='bar.finished'), rp.TaskProgressColumn()) as p:
